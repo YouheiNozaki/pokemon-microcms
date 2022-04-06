@@ -13,6 +13,8 @@ export const PokemonParty = () => {
               <img
                 alt={`${pokemonParty.name}の画像`}
                 src={`https://img.pokemondb.net/artwork/large/${pokemonParty.name}.jpg`}
+                width={48}
+                height={48}
               />
               <p>{pokemonParty.name}</p>
             </div>
