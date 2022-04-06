@@ -1,0 +1,15 @@
+.main {
+  border: none;
+  background-color: #fff;
+  text-align: center;
+  border-radius: 1rem;
+
+  &:hover {
+    background-color: #dedeeb;
+    cursor: pointer;
+  }
+}
+
+.name {
+  color: #331cbf;
+}
