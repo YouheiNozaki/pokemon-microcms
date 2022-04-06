@@ -1,6 +1,6 @@
 import { RecoilRoot } from 'recoil';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { PokemonList } from './components/PokemonList';
+import { Main } from './components/Main';
 
 const queryClient = new QueryClient();
 
@@ -8,7 +8,7 @@ export const App = () => {
   return (
     <RecoilRoot>
       <QueryClientProvider client={queryClient}>
-        <PokemonList />
+        <Main />
       </QueryClientProvider>
     </RecoilRoot>
   );
