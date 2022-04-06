@@ -13,37 +13,8 @@
   border-radius: 4px 0 0 4px;
 }
 
-.action {
-  text-align: center;
-  width: 100%;
-  background-color: #fff;
-  padding: 8px 0;
-}
-
-.submitButton {
-  border: none;
-  font-size: 12px;
-  font-weight: bold;
-  cursor: pointer;
-  white-space: nowrap;
-  border-radius: 4px;
-  height: 36px;
-  width: 144px;
-  color: #fff;
-  background-color: #563bff;
-
-  &:hover {
-    opacity: 0.8;
-  }
-
-  &:disabled {
-    background-color: #dedeeb;
-  }
-}
-
 .pokemonpartyList {
   overflow: auto;
-  height: calc(100% - 52px);
 }
 
 .pokemonparty {
@@ -57,10 +28,6 @@
     width: 68px;
     height: auto;
   }
-}
-
-.empty {
-  height: calc(100% - 52px);
 }
 
 .emptyText {

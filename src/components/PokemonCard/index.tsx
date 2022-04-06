@@ -1,8 +1,5 @@
 import { useCallback } from 'react';
-import {
-  usePokemonPartyMutators,
-  usePokemonPartyState,
-} from '../../hooks/usePokemonParty';
+import { usePokemonPartyState } from '../../hooks/usePokemonPartyState';
 import styles from './pokemoncard.module.scss';
 
 type Pokemon = {
@@ -14,9 +11,8 @@ type Props = {
   party: Pokemon[] | undefined;
 };
 
-export const PokemonCard: React.VFC<Props> = ({ name, party }) => {
-  const { pokemonParty } = usePokemonPartyState();
-  const { setPokemonParty } = usePokemonPartyMutators();
+export const PokemonCard: React.VFC<Props> = ({ name }) => {
+  const { pokemonParty, setPokemonParty } = usePokemonPartyState();
 
   const addPokemonParty = useCallback(() => {
     if (pokemonParty) {
@@ -30,7 +26,7 @@ export const PokemonCard: React.VFC<Props> = ({ name, party }) => {
     <button
       className={styles.main}
       onClick={addPokemonParty}
-      disabled={party && party?.length > 5}
+      disabled={pokemonParty && pokemonParty?.length > 5}
     >
       <img
         alt={`${name}の画像です`}

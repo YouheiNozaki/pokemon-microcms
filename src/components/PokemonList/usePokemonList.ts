@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
 
-export const useGetPokemons = () => {
+export const usePokemonList = () => {
   const getPokemons = async () => {
     const pokemons = await fetch(
       `https://pokeapi.co/api/v2/pokemon?limit=151`,
@@ -9,9 +9,13 @@ export const useGetPokemons = () => {
     return pokemons.results;
   };
 
-  const { data: pokemons } = useQuery('pokemons', getPokemons, {
+  const {
+    data: pokemons,
+    isError: pokemonsIsError,
+    isLoading: pokemonsIsLoading,
+  } = useQuery('pokemons', getPokemons, {
     staleTime: Infinity,
   });
 
-  return { pokemons };
+  return { pokemons, pokemonsIsError, pokemonsIsLoading };
 };
