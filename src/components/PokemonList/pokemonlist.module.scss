@@ -13,28 +13,6 @@
   border-radius: 4px 0 0 4px;
 }
 
-.pokemonpartyList {
-  overflow: auto;
-}
-
-.pokemonparty {
-  display: flex;
-  align-items: center;
-  margin: 4px;
-
-  > img {
-    margin: 12px;
-    padding-right: 4px;
-    width: 68px;
-    height: auto;
-  }
-}
-
-.emptyText {
-  color: #9393b2;
-  margin: 24px;
-}
-
 .pokemonlist {
   padding: 12px;
   width: calc(100% - 240px);

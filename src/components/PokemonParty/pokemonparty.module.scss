@@ -1,0 +1,21 @@
+.pokemonpartyList {
+  overflow: auto;
+}
+
+.pokemonparty {
+  display: flex;
+  align-items: center;
+  margin: 4px;
+
+  > img {
+    margin: 12px;
+    padding-right: 4px;
+    width: 68px;
+    height: auto;
+  }
+}
+
+.emptyText {
+  color: #9393b2;
+  margin: 24px;
+}

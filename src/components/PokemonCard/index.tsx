@@ -2,13 +2,8 @@ import { useCallback } from 'react';
 import { usePokemonPartyState } from '../../hooks/usePokemonPartyState';
 import styles from './pokemoncard.module.scss';
 
-type Pokemon = {
-  name: string;
-};
-
 type Props = {
   name: string;
-  party: Pokemon[] | undefined;
 };
 
 export const PokemonCard: React.VFC<Props> = ({ name }) => {
