@@ -3,7 +3,10 @@ import styles from './pokemonlist.module.scss';
 import { usePokemonList } from './usePokemonList';
 
 export const PokemonList = () => {
-  const { pokemons, pokemonsIsError, pokemonsIsLoading } = usePokemonList(1);
+  const { pokemons, pokemonsIsError, pokemonsIsLoading } = usePokemonList({
+    offset: 0,
+    limit: 151,
+  });
 
   if (pokemonsIsError) {
     return (

@@ -4,11 +4,19 @@
   height: 480px;
 }
 
-.sidebar {
-  width: 240px;
+.pokemonDetailWrapper {
+  width: 360px;
   display: flex;
   flex-direction: column;
   background-color: #f8f9fd;
   border: 1px solid #e5e5f2;
   border-radius: 4px 0 0 4px;
+}
+
+.pokemonListWrapper {
+  padding: 12px;
+  width: calc(100% - 360px);
+  border: 1px solid #e5e5f2;
+  border-radius: 0 4px 4px 0;
+  overflow: auto;
 }

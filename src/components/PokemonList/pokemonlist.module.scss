@@ -1,13 +1,7 @@
 .pokemonlist {
-  margin: 0;
-  padding: 12px;
-  width: calc(100% - 240px);
-  overflow: auto;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  border: 1px solid #e5e5f2;
-  border-radius: 0 4px 4px 0;
 }
 
 .error {

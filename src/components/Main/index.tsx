@@ -5,10 +5,12 @@ import styles from './main.module.scss';
 export const Main = () => {
   return (
     <main className={styles.main}>
-      <div className={styles.sidebar}>
+      <div className={styles.pokemonDetailWrapper}>
         <PokemonParty />
       </div>
-      <PokemonList />
+      <div className={styles.pokemonListWrapper}>
+        <PokemonList />
+      </div>
     </main>
   );
 };
