@@ -3,7 +3,7 @@ import styles from './pokemonlist.module.scss';
 import { usePokemonList } from './usePokemonList';
 
 export const PokemonList = () => {
-  const { pokemons, pokemonsIsError, pokemonsIsLoading } = usePokemonList();
+  const { pokemons, pokemonsIsError, pokemonsIsLoading } = usePokemonList(1);
 
   if (pokemonsIsError) {
     return (
@@ -25,7 +25,7 @@ export const PokemonList = () => {
 
   return (
     <ul className={styles.pokemonlist}>
-      {pokemons?.map((pokemon: { name: string }, i: number) => (
+      {pokemons.map((pokemon, i: number) => (
         <li key={i} className={styles.li}>
           <PokemonCard name={pokemon.name} />
         </li>

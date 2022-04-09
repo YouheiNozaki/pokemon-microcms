@@ -25,7 +25,8 @@ export const PokemonCard: React.VFC<Props> = ({ name }) => {
     >
       <img
         alt={`${name}の画像です`}
-        src={`https://img.pokemondb.net/sprites/lets-go-pikachu-eevee/normal/${name}.png`}
+        src={`https://img.pokemondb.net/sprites/sword-shield/icon/${name}.png`}
+        width={60}
       />
       <p className={styles.name}>{name}</p>
     </button>
