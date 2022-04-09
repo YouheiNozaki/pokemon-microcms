@@ -1,12 +1,27 @@
 import { PokemonCard } from '../PokemonCard';
 import styles from './pokemonlist.module.scss';
-import { usePokemonList } from './usePokemonList';
+import { usePokemonList } from '../../hooks/usePokemonList';
+import { useEffect } from 'react';
+import { GetPokemonParam } from '../../types/pokemon';
 
-export const PokemonList = () => {
-  const { pokemons, pokemonsIsError, pokemonsIsLoading } = usePokemonList({
-    offset: 0,
-    limit: 151,
-  });
+type Props = {
+  generation: GetPokemonParam;
+};
+
+export const PokemonList: React.VFC<Props> = ({ generation }) => {
+  const { pokemons, pokemonsIsError, pokemonsIsLoading, pokemonRefetch } =
+    usePokemonList(
+      generation || {
+        offset: 0,
+        limit: 151,
+      },
+    );
+
+  useEffect(() => {
+    if (generation) {
+      pokemonRefetch();
+    }
+  }, [generation, pokemonRefetch]);
 
   if (pokemonsIsError) {
     return (

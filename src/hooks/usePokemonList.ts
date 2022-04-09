@@ -1,10 +1,11 @@
 import { useQuery } from 'react-query';
-import type { Pokemon, GetPokemonParam } from '../../types/pokemon';
+import type { Pokemon, GetPokemonParam } from '../types/pokemon';
 
 type UsePokemonReturnValue = {
   pokemons: Pokemon[];
   pokemonsIsError: boolean;
   pokemonsIsLoading: boolean;
+  pokemonRefetch: any;
 };
 type UsePokemonList = ({
   limit,
@@ -24,9 +25,10 @@ export const usePokemonList: UsePokemonList = ({ limit, offset }) => {
     data: pokemons,
     isError: pokemonsIsError,
     isLoading: pokemonsIsLoading,
+    refetch: pokemonRefetch,
   } = useQuery('pokemons', getPokemons, {
     staleTime: Infinity,
   });
 
-  return { pokemons, pokemonsIsError, pokemonsIsLoading };
+  return { pokemons, pokemonsIsError, pokemonsIsLoading, pokemonRefetch };
 };
