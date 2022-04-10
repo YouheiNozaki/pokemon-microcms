@@ -25,8 +25,13 @@
 }
 
 .actions {
+  display: flex;
   padding: 12px;
   border-bottom: 1px solid #e5e5f2;
+
+  > *:not(last-child) {
+    margin-right: 8px;
+  }
 }
 
 .select {
@@ -35,9 +40,56 @@
   border-radius: 4px;
   box-sizing: border-box;
   background-color: #fff;
-  min-width: 240px;
   height: 40px;
   font-size: 16px;
   transition: box-shadow 0.2s ease;
   box-shadow: 0 1px 4px rgb(0 0 0 / 8%);
+}
+
+.input {
+  padding: 16px;
+  border: 1px solid #cdcde0;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #fff;
+  min-width: 80px;
+  width: 100%;
+  height: 40px;
+  font-size: 16px;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 8%);
+  appearance: none;
+}
+
+.input:hover {
+  box-shadow: 0 1px 8px rgb(0 0 0 / 8%);
+}
+
+.input:focus {
+  outline: 1px solid var(--color-accent-purple);
+}
+
+.input.hasError {
+  border: 1px solid var(--color-accent-red);
+  background-color: var(--color-bg-error);
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  color: #fff;
+  background-color: #563bff;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  white-space: nowrap;
+  line-height: 18px;
+  border-radius: 4px;
+  height: 40px;
+  padding: 8px 16px;
+}
+
+.button:hover {
+  opacity: 0.8;
 }

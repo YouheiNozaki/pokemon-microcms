@@ -75,6 +75,8 @@ export const Main = () => {
             <option value={7}>第7世代</option>
             <option value={8}>第8世代</option>
           </select>
+          <input type="text" className={styles.input} />
+          <button className={styles.button}>検索</button>
         </div>
         <div className={styles.wrapper}>
           <PokemonList generation={generation} />
