@@ -1,27 +1,28 @@
+import { useMemo } from 'react';
 import { PokemonCard } from '../PokemonCard';
 import styles from './pokemonlist.module.scss';
 import { usePokemonList } from './usePokemonList';
-import { useEffect } from 'react';
 import { GetPokemonParam } from '../../types/pokemon';
 
 type Props = {
   generation: GetPokemonParam;
+  name?: string;
 };
 
-export const PokemonList: React.VFC<Props> = ({ generation }) => {
-  const { pokemons, pokemonsIsError, pokemonsIsLoading, pokemonRefetch } =
-    usePokemonList(
-      generation || {
-        offset: 0,
-        limit: 151,
-      },
-    );
+export const PokemonList: React.VFC<Props> = ({ generation, name }) => {
+  const { pokemons, pokemonsIsError, pokemonsIsLoading } = usePokemonList(
+    generation || {
+      offset: 0,
+      limit: 151,
+    },
+  );
 
-  useEffect(() => {
-    if (generation) {
-      pokemonRefetch();
+  const pokemonSearchData = useMemo(() => {
+    if (name) {
+      return pokemons.filter((pokemon) => pokemon.name.indexOf(name) !== -1);
     }
-  }, [generation, pokemonRefetch]);
+    return pokemons;
+  }, [name, pokemons]);
 
   if (pokemonsIsError) {
     return (
@@ -41,9 +42,18 @@ export const PokemonList: React.VFC<Props> = ({ generation }) => {
     );
   }
 
+  if (pokemonSearchData.length === 0) {
+    return (
+      <div className={styles.error}>
+        <p>検索結果がありません</p>
+        <img src="/metamon.png" alt="メタモンの画像" />
+      </div>
+    );
+  }
+
   return (
     <ul className={styles.pokemonlist}>
-      {pokemons.map((pokemon, i: number) => (
+      {pokemonSearchData.map((pokemon, i: number) => (
         <li key={i} className={styles.li}>
           <PokemonCard name={pokemon.name} />
         </li>

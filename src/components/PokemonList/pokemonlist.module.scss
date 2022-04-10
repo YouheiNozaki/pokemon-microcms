@@ -7,10 +7,11 @@
 
 .error {
   text-align: center;
-  padding: 60px 0px;
-  width: calc(100% - 240px);
-  border: 1px solid #e5e5f2;
+  padding-top: 20px;
+  height: 100%;
+  width: 100%;
   border-radius: 0 4px 4px 0;
+  box-sizing: border-box;
   color: #9393b2;
   font-size: 20px;
 }

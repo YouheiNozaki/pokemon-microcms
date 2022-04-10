@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import type { Pokemon, GetPokemonParam } from '../../types/pokemon';
 
@@ -12,10 +13,10 @@ type UsePokemonList = ({
   offset,
 }: GetPokemonParam) => UsePokemonReturnValue;
 
-export const usePokemonList: UsePokemonList = ({ limit, offset }) => {
+export const usePokemonList: UsePokemonList = (generationParam) => {
   const getPokemons = async () => {
     const pokemons = await fetch(
-      `https://pokeapi.co/api/v2/pokemon-species?limit=${limit}&offset=${offset}`,
+      `https://pokeapi.co/api/v2/pokemon-species?limit=${generationParam.limit}&offset=${generationParam.offset}`,
     ).then((res) => res.json());
 
     return pokemons.results;
@@ -29,6 +30,12 @@ export const usePokemonList: UsePokemonList = ({ limit, offset }) => {
   } = useQuery('pokemons', getPokemons, {
     staleTime: Infinity,
   });
+
+  useEffect(() => {
+    if (generationParam) {
+      pokemonRefetch();
+    }
+  }, [generationParam, pokemonRefetch]);
 
   return { pokemons, pokemonsIsError, pokemonsIsLoading, pokemonRefetch };
 };

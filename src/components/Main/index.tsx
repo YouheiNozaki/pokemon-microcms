@@ -55,11 +55,10 @@ export const Main = () => {
   };
 
   const [inputPokemon, setInputPokemon] = useState<string>('');
-  const { debouncedValue: pokemonSearchData } = useDebounce({
+  const { debouncedValue: pokemonSearchName } = useDebounce({
     value: inputPokemon,
     delay: 1000,
   });
-  console.log(pokemonSearchData);
 
   return (
     <div className={styles.main}>
@@ -87,13 +86,9 @@ export const Main = () => {
             className={styles.input}
             onChange={(e) => setInputPokemon(e.target.value)}
           />
-          {/* <button className={styles.button}>検索</button> */}
         </div>
         <div className={styles.wrapper}>
-          <PokemonList
-            generation={generation}
-            // pokemonSearchData={pokemonSearchData}
-          />
+          <PokemonList generation={generation} name={pokemonSearchName} />
         </div>
       </div>
     </div>
