@@ -1,17 +1,27 @@
+import { useCallback } from 'react';
 import { atom, useRecoilValue, useSetRecoilState } from 'recoil';
+import type { Pokemon } from '../types/pokemon';
 
-type Pokemon = {
-  name: string;
-};
-
-const pokemonState = atom<Pokemon | undefined>({
+const pokemonState = atom<Pokemon>({
   key: 'pokemonState',
   default: undefined,
 });
 
 export const usePokemonState = () => {
-  const pokemonValue = useRecoilValue<Pokemon | undefined>(pokemonState);
-  const setPokemonValue = useSetRecoilState<Pokemon | undefined>(pokemonState);
+  const pokemonValue = useRecoilValue<Pokemon>(pokemonState);
 
-  return { pokemonValue, setPokemonValue };
+  return { pokemonValue };
+};
+
+export const usePokemonMutators = () => {
+  const setPokemonValue = useSetRecoilState<Pokemon>(pokemonState);
+
+  const setPokemon = useCallback(
+    (pokemon: Pokemon) => {
+      setPokemonValue(pokemon);
+    },
+    [setPokemonValue],
+  );
+
+  return { setPokemon };
 };

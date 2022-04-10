@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
-import { usePokemonState } from '../../hooks/usePokemonState';
+import { usePokemon } from '../../hooks/usePokemon';
+import { usePokemonMutators } from '../../hooks/usePokemonState';
 import styles from './pokemoncard.module.scss';
 
 type Props = {
@@ -7,16 +8,21 @@ type Props = {
 };
 
 export const PokemonCard: React.VFC<Props> = ({ name }) => {
-  const { setPokemonValue } = usePokemonState();
+  const { setPokemon } = usePokemonMutators();
+  const { pokemonRefetch } = usePokemon(name);
 
-  const addPokemonParty = useCallback(() => {
-    setPokemonValue({ name });
-  }, [name, setPokemonValue]);
+  const addPokemonParty = useCallback(async () => {
+    const pokemon = await pokemonRefetch();
+    const pokemonData = pokemon.data;
+    setPokemon({
+      name: pokemonData.name,
+    });
+  }, [pokemonRefetch, setPokemon]);
 
   return (
     <button className={styles.main} onClick={addPokemonParty}>
       <img
-        alt={`${name}の画像です`}
+        alt={`${name}の画像`}
         src={`https://img.pokemondb.net/sprites/sword-shield/icon/${name}.png`}
       />
       <p className={styles.name}>{name}</p>
