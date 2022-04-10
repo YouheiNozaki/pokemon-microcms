@@ -1,15 +1,15 @@
 import { useState } from 'react';
-import { GetPokemonParam } from '../../types/pokemon';
 import { PokemonList } from '../PokemonList';
 import { PokemonParty } from '../PokemonParty';
 import styles from './main.module.scss';
+import { useDebounce } from '../../hooks/useDebounce';
+import type { GetPokemonParam } from '../../types/pokemon';
 
 export const Main = () => {
   const [generation, setGeneration] = useState<GetPokemonParam>({
     offset: 0,
     limit: 151,
   });
-
   const onSelect = (generation: string) => {
     if (generation === '1') {
       setGeneration({
@@ -54,6 +54,13 @@ export const Main = () => {
     }
   };
 
+  const [inputPokemon, setInputPokemon] = useState<string>('');
+  const { debouncedValue: pokemonSearchData } = useDebounce({
+    value: inputPokemon,
+    delay: 1000,
+  });
+  console.log(pokemonSearchData);
+
   return (
     <div className={styles.main}>
       <div className={styles.pokemonDetailWrapper}>
@@ -75,11 +82,18 @@ export const Main = () => {
             <option value={7}>第7世代</option>
             <option value={8}>第8世代</option>
           </select>
-          <input type="text" className={styles.input} />
-          <button className={styles.button}>検索</button>
+          <input
+            type="text"
+            className={styles.input}
+            onChange={(e) => setInputPokemon(e.target.value)}
+          />
+          {/* <button className={styles.button}>検索</button> */}
         </div>
         <div className={styles.wrapper}>
-          <PokemonList generation={generation} />
+          <PokemonList
+            generation={generation}
+            // pokemonSearchData={pokemonSearchData}
+          />
         </div>
       </div>
     </div>
