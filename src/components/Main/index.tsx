@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { PokemonList } from '../PokemonList';
-import { PokemonParty } from '../PokemonParty';
+import { PokemonDetail } from '../PokemonDetail';
 import styles from './main.module.scss';
 import { useDebounce } from '../../hooks/useDebounce';
 import type { GetPokemonParam } from '../../types/pokemon';
@@ -63,7 +63,7 @@ export const Main = () => {
   return (
     <div className={styles.main}>
       <div className={styles.pokemonDetailWrapper}>
-        <PokemonParty />
+        <PokemonDetail />
       </div>
       <div className={styles.body}>
         <div className={styles.actions}>
