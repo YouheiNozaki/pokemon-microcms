@@ -19,7 +19,7 @@ export const PokemonDetail = () => {
   }
 
   if (pokemonIsError || pokemonIsRefetchError) {
-    return <Error text="ポケモンの取得に失敗しました" />;
+    return <Error text="取得できないポケモンです" />;
   }
 
   return (
