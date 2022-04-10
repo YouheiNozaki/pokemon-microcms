@@ -1,6 +1,6 @@
 import { PokemonCard } from '../PokemonCard';
 import styles from './pokemonlist.module.scss';
-import { usePokemonList } from '../../hooks/usePokemonList';
+import { usePokemonList } from './usePokemonList';
 import { useEffect } from 'react';
 import { GetPokemonParam } from '../../types/pokemon';
 
