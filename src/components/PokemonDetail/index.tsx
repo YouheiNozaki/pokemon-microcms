@@ -29,6 +29,8 @@ export const PokemonDetail = () => {
           <img
             alt={`${pokemonData.name}の画像`}
             src={pokemonData.sprites?.front_default}
+            width={120}
+            height={120}
           />
           <p>{pokemonData.name}</p>
         </div>
