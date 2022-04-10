@@ -6,15 +6,19 @@ import styles from './pokemondetail.module.scss';
 
 export const PokemonDetail = () => {
   const { pokemonValue } = usePokemonState();
-  const { pokemonData, pokemonIsError, pokemonIsLoading } = usePokemon(
-    pokemonValue?.name,
-  );
+  const {
+    pokemonData,
+    pokemonIsError,
+    pokemonIsLoading,
+    pokemonIsRefetching,
+    pokemonIsRefetchError,
+  } = usePokemon(pokemonValue?.name);
 
-  if (pokemonIsLoading === true) {
+  if (pokemonIsLoading || pokemonIsRefetching) {
     return <Loading />;
   }
 
-  if (pokemonIsError) {
+  if (pokemonIsError || pokemonIsRefetchError) {
     return <Error text="ポケモンの取得に失敗しました" />;
   }
 

@@ -7,6 +7,8 @@ type UsePokemonReturnValue = {
   pokemonIsError: boolean;
   pokemonIsLoading: boolean;
   pokemonRefetch: () => any;
+  pokemonIsRefetching: boolean;
+  pokemonIsRefetchError: boolean;
 };
 type UsePokemon = (name: string) => UsePokemonReturnValue;
 
@@ -32,6 +34,8 @@ export const usePokemon: UsePokemon = (name) => {
     isError: pokemonIsError,
     isLoading: pokemonIsLoading,
     refetch: pokemonRefetch,
+    isRefetching: pokemonIsRefetching,
+    isRefetchError: pokemonIsRefetchError,
   } = useQuery('pokemon', getPokemon, {
     staleTime: Infinity,
   });
@@ -47,5 +51,7 @@ export const usePokemon: UsePokemon = (name) => {
     pokemonIsError,
     pokemonIsLoading,
     pokemonRefetch,
+    pokemonIsRefetching,
+    pokemonIsRefetchError,
   };
 };
