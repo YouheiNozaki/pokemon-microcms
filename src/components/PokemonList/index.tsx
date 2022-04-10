@@ -12,7 +12,13 @@ type Props = {
 };
 
 export const PokemonList: React.VFC<Props> = ({ generation, name }) => {
-  const { pokemons, pokemonsIsError, pokemonsIsLoading } = usePokemonList(
+  const {
+    pokemons,
+    pokemonsIsError,
+    pokemonsIsLoading,
+    pokemonIsRefetching,
+    pokemonIsRefetchError,
+  } = usePokemonList(
     generation || {
       offset: 0,
       limit: 151,
@@ -26,11 +32,11 @@ export const PokemonList: React.VFC<Props> = ({ generation, name }) => {
     return pokemons;
   }, [name, pokemons]);
 
-  if (pokemonsIsError) {
+  if (pokemonsIsError || pokemonIsRefetchError) {
     return <Error text="ポケモンの取得に失敗しました" />;
   }
 
-  if (pokemonsIsLoading) {
+  if (pokemonsIsLoading || pokemonIsRefetching) {
     return <Loading />;
   }
 

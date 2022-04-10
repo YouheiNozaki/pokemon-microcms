@@ -7,6 +7,8 @@ type UsePokemonReturnValue = {
   pokemonsIsError: boolean;
   pokemonsIsLoading: boolean;
   pokemonRefetch: any;
+  pokemonIsRefetching: boolean;
+  pokemonIsRefetchError: boolean;
 };
 type UsePokemonList = ({
   limit,
@@ -27,6 +29,8 @@ export const usePokemonList: UsePokemonList = (generationParam) => {
     isError: pokemonsIsError,
     isLoading: pokemonsIsLoading,
     refetch: pokemonRefetch,
+    isRefetching: pokemonIsRefetching,
+    isRefetchError: pokemonIsRefetchError,
   } = useQuery('pokemons', getPokemons, {
     staleTime: Infinity,
   });
@@ -37,5 +41,12 @@ export const usePokemonList: UsePokemonList = (generationParam) => {
     }
   }, [generationParam, pokemonRefetch]);
 
-  return { pokemons, pokemonsIsError, pokemonsIsLoading, pokemonRefetch };
+  return {
+    pokemons,
+    pokemonsIsError,
+    pokemonsIsLoading,
+    pokemonRefetch,
+    pokemonIsRefetching,
+    pokemonIsRefetchError,
+  };
 };
