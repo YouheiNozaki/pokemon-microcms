@@ -1,4 +1,6 @@
 import { useMemo } from 'react';
+import { Error } from '../ui/Error';
+import { Loading } from '../ui/Loading';
 import { PokemonCard } from '../PokemonCard';
 import styles from './pokemonlist.module.scss';
 import { usePokemonList } from './usePokemonList';
@@ -25,21 +27,11 @@ export const PokemonList: React.VFC<Props> = ({ generation, name }) => {
   }, [name, pokemons]);
 
   if (pokemonsIsError) {
-    return (
-      <div className={styles.error}>
-        <p>ポケモンの取得に失敗しました。</p>
-        <img src="/metamon.png" alt="メタモンの画像" />
-      </div>
-    );
+    return <Error text="ポケモンの取得に失敗しました" />;
   }
 
-  if (pokemonsIsLoading === true) {
-    return (
-      <div className={styles.error}>
-        <p>読み込み中</p>
-        <img src="/metamon.png" alt="メタモンの画像" />
-      </div>
-    );
+  if (pokemonsIsLoading) {
+    return <Loading />;
   }
 
   if (pokemonSearchData.length === 0) {

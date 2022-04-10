@@ -1,11 +1,22 @@
+import { Error } from '../ui/Error';
+import { Loading } from '../ui/Loading';
 import { usePokemonState } from '../../hooks/usePokemonState';
 import { usePokemon } from '../../hooks/usePokemon';
 import styles from './pokemondetail.module.scss';
 
 export const PokemonDetail = () => {
   const { pokemonValue } = usePokemonState();
-  const { pokemonData }: any = usePokemon(pokemonValue?.name);
-  console.log(pokemonData);
+  const { pokemonData, pokemonIsError, pokemonIsLoading } = usePokemon(
+    pokemonValue?.name,
+  );
+
+  if (pokemonIsLoading === true) {
+    return <Loading />;
+  }
+
+  if (pokemonIsError) {
+    return <Error text="ポケモンの取得に失敗しました" />;
+  }
 
   return (
     <div className={styles.pokemonpartyList}>
@@ -13,7 +24,7 @@ export const PokemonDetail = () => {
         <div className={styles.pokemonparty}>
           <img
             alt={`${pokemonData.name}の画像`}
-            src={pokemonData?.sprites?.front_default}
+            src={pokemonData.sprites?.front_default}
           />
           <p>{pokemonData.name}</p>
         </div>

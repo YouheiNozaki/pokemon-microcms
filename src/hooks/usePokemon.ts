@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import type { Pokemon } from '../types/pokemon';
 
@@ -18,7 +19,6 @@ export const usePokemon: UsePokemon = (name) => {
       `https://pokeapi.co/api/v2/pokemon/${name}`,
     ).then((res) => {
       if (!res.ok) {
-        console.log('catch error');
         throw new Error();
       }
       return res.json();
@@ -35,6 +35,12 @@ export const usePokemon: UsePokemon = (name) => {
   } = useQuery('pokemon', getPokemon, {
     staleTime: Infinity,
   });
+
+  useEffect(() => {
+    if (name) {
+      pokemonRefetch();
+    }
+  }, [name, pokemonRefetch]);
 
   return {
     pokemonData,
