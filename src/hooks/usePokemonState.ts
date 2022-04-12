@@ -1,6 +1,8 @@
 import { useCallback } from 'react';
 import { atom, useRecoilValue, useSetRecoilState } from 'recoil';
-import type { Pokemon } from '../types/pokemon';
+type Pokemon = {
+  name: string;
+};
 
 const pokemonState = atom<Pokemon>({
   key: 'pokemonState',
