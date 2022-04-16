@@ -1,7 +1,7 @@
 import type { Pokemon } from '../types/pokemon';
 
 type Message = {
-  id?: string; // iFrame識別子
+  id?: string;
   title?: string;
   description?: string;
   imageUrl?: string;
