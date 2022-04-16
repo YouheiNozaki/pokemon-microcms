@@ -6,9 +6,7 @@ type Message = {
   description?: string;
   imageUrl?: string;
   updatedAt?: Date;
-  data: {
-    pokemon: Pokemon[];
-  };
+  data: Pokemon;
 };
 
 type Data = {
