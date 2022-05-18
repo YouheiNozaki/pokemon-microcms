@@ -3,7 +3,7 @@ import { Error } from '../ui/Error';
 import { Loading } from '../ui/Loading';
 import { PokemonCard } from '../PokemonCard';
 import styles from './pokemonlist.module.scss';
-import { usePokemonList } from './usePokemonList';
+import { usePokemonList } from '../../hooks/usePokemonList';
 import { GetPokemonParam } from '../../types/pokemon';
 
 type Props = {

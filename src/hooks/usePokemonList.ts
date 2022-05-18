@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useQuery } from 'react-query';
-import type { Pokemon, GetPokemonParam } from '../../types/pokemon';
+import type { Pokemon, GetPokemonParam } from '../types/pokemon';
 
 type UsePokemonReturnValue = {
   pokemons: Pokemon[];

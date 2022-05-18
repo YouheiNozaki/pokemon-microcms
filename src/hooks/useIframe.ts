@@ -38,11 +38,18 @@ export const useMicrocms: UseMicrocms = (pokemon) => {
           title: pokemon.name,
           imageUrl: pokemon.sprites?.front_default,
           updatedAt: new Date(),
-          data: data,
+          data: {
+            id: pokemon.id,
+            name: pokemon.name,
+            height: pokemon.height,
+            weight: pokemon.weight,
+            abilities: pokemon.abilities,
+            stats: pokemon.stats,
+          },
         },
       });
     },
-    [data, id],
+    [id],
   );
 
   return [data, selectData];
