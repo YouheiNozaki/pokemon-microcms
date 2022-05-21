@@ -3,62 +3,16 @@ import { PokemonList } from '../PokemonList';
 import { PokemonDetail } from '../PokemonDetail';
 import styles from './main.module.scss';
 import { useDebounce } from '../../hooks/useDebounce';
-import type { GetPokemonParam } from '../../types/pokemon';
+import { useSelectGeneration } from '../../hooks/useSelectGeneration';
 
 export const Main = () => {
-  const [generation, setGeneration] = useState<GetPokemonParam>({
-    offset: 0,
-    limit: 151,
-  });
-  const onSelect = (generation: string) => {
-    if (generation === '1') {
-      setGeneration({
-        offset: 0,
-        limit: 151,
-      });
-    } else if (generation === '2') {
-      setGeneration({
-        offset: 151,
-        limit: 100,
-      });
-    } else if (generation === '3') {
-      setGeneration({
-        offset: 251,
-        limit: 135,
-      });
-    } else if (generation === '4') {
-      setGeneration({
-        offset: 386,
-        limit: 107,
-      });
-    } else if (generation === '5') {
-      setGeneration({
-        offset: 493,
-        limit: 156,
-      });
-    } else if (generation === '6') {
-      setGeneration({
-        offset: 649,
-        limit: 72,
-      });
-    } else if (generation === '7') {
-      setGeneration({
-        offset: 721,
-        limit: 88,
-      });
-    } else if (generation === '8') {
-      setGeneration({
-        offset: 809,
-        limit: 96,
-      });
-    }
-  };
-
   const [inputPokemon, setInputPokemon] = useState<string>('');
   const { debouncedValue: pokemonSearchName } = useDebounce({
     value: inputPokemon,
     delay: 1000,
   });
+
+  const { generation, onSelectGeneration } = useSelectGeneration();
 
   return (
     <div className={styles.main}>
@@ -70,7 +24,7 @@ export const Main = () => {
           <select
             className={styles.select}
             defaultValue={1}
-            onChange={(e) => onSelect(e.target.value)}
+            onChange={(e) => onSelectGeneration(e.target.value)}
           >
             <option value={1}>第1世代</option>
             <option value={2}>第2世代</option>
