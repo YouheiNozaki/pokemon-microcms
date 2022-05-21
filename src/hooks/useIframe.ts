@@ -2,9 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { microcmsPostData, microcmsUpdateStyle } from '../lib/microcms';
 import type { Pokemon } from '../types/pokemon';
 
-type UseMicrocms = (
-  pokemon: Pokemon,
-) => [Pokemon | undefined, (item: Pokemon) => void];
+type UseMicrocms = (pokemon: Pokemon) => [Pokemon | undefined];
 
 export const useMicrocms: UseMicrocms = (pokemon) => {
   const [id, setId] = useState<string>('');
@@ -45,6 +43,7 @@ export const useMicrocms: UseMicrocms = (pokemon) => {
             weight: pokemon.weight,
             abilities: pokemon.abilities,
             stats: pokemon.stats,
+            sprites: pokemon.sprites,
           },
         },
       });
@@ -52,5 +51,11 @@ export const useMicrocms: UseMicrocms = (pokemon) => {
     [id],
   );
 
-  return [data, selectData];
+  useEffect(() => {
+    if (pokemon) {
+      selectData(pokemon);
+    }
+  }, [pokemon, selectData]);
+
+  return [data];
 };

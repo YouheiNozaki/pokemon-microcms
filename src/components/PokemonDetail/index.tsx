@@ -4,7 +4,7 @@ import { usePokemonState } from '../../hooks/usePokemonState';
 import { usePokemon } from '../../hooks/usePokemon';
 import { useMicrocms } from '../../hooks/useIframe';
 import styles from './pokemondetail.module.scss';
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 
 export const PokemonDetail = () => {
   const { pokemonValue } = usePokemonState();
@@ -16,13 +16,7 @@ export const PokemonDetail = () => {
     pokemonIsRefetchError,
   } = usePokemon(pokemonValue?.name);
 
-  const [data, selectData] = useMicrocms(pokemonData);
-
-  useEffect(() => {
-    if (pokemonData) {
-      selectData(pokemonData);
-    }
-  }, [pokemonData, selectData]);
+  const [data] = useMicrocms(pokemonData);
 
   const pokemonDetail = useMemo(() => {
     if (pokemonData) {
