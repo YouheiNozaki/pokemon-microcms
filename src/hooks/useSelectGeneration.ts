@@ -4,7 +4,7 @@ import type { GetPokemonParam } from '../types/pokemon';
 export const useSelectGeneration = () => {
   const [generation, setGeneration] = useState<GetPokemonParam>({
     offset: 0,
-    limit: 151,
+    limit: 905,
   });
 
   const onSelectGeneration = useCallback(
@@ -48,6 +48,11 @@ export const useSelectGeneration = () => {
         setGeneration({
           offset: 809,
           limit: 96,
+        });
+      } else {
+        setGeneration({
+          offset: 0,
+          limit: 905,
         });
       }
     },

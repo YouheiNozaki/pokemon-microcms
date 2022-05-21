@@ -23,9 +23,10 @@ export const Main = () => {
         <div className={styles.actions}>
           <select
             className={styles.select}
-            defaultValue={1}
+            defaultValue={0}
             onChange={(e) => onSelectGeneration(e.target.value)}
           >
+            <option value={'ALL'}>ALL</option>
             <option value={1}>第1世代</option>
             <option value={2}>第2世代</option>
             <option value={3}>第3世代</option>
