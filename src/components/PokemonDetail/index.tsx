@@ -17,7 +17,7 @@ export const PokemonDetail = () => {
     pokemonIsRefetchError,
   } = usePokemon(pokemonValue?.name);
 
-  const url = `https://ryusou-pokemon.microcms.io`;
+  const url = process.env.REACT_APP_MICROCMS_ORIGIN || '';
   const { data, sendMessage } = useFieldExtension(pokemonData, {
     origin: url,
     height: 500,
