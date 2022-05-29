@@ -29,7 +29,7 @@ export const PokemonDetail = () => {
         id: pokemonData.name,
         title: pokemonData.name,
         imageUrl: pokemonData.sprites?.front_default,
-        updatedAt: new Date(),
+        updatedAt: new Date().toISOString(),
         data: {
           id: pokemonData.id,
           name: pokemonData.name,
