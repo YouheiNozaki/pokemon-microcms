@@ -1,10 +1,11 @@
+import { useFieldExtension } from 'microcms-field-extension-react';
+
 import { Error } from '../ui/Error';
 import { Loading } from '../ui/Loading';
 import { usePokemonState } from '../../hooks/usePokemonState';
 import { usePokemon } from '../../hooks/usePokemon';
-import { useMicrocms } from '../../hooks/useIframe';
 import styles from './pokemondetail.module.scss';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 
 export const PokemonDetail = () => {
   const { pokemonValue } = usePokemonState();
@@ -16,7 +17,31 @@ export const PokemonDetail = () => {
     pokemonIsRefetchError,
   } = usePokemon(pokemonValue?.name);
 
-  const [data] = useMicrocms(pokemonData);
+  const url = `https://ryusou-pokemon.microcms.io`;
+  const { data, sendMessage } = useFieldExtension(pokemonData, {
+    origin: url,
+    height: 500,
+  });
+
+  useEffect(() => {
+    if (pokemonData) {
+      sendMessage({
+        id: pokemonData.name,
+        title: pokemonData.name,
+        imageUrl: pokemonData.sprites?.front_default,
+        updatedAt: new Date(),
+        data: {
+          id: pokemonData.id,
+          name: pokemonData.name,
+          height: pokemonData.height,
+          weight: pokemonData.weight,
+          abilities: pokemonData.abilities,
+          stats: pokemonData.stats,
+          sprites: pokemonData.sprites,
+        },
+      });
+    }
+  }, [pokemonData, sendMessage]);
 
   const pokemonDetail = useMemo(() => {
     if (pokemonData) {
