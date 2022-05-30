@@ -6,7 +6,6 @@ type UsePokemonReturnValue = {
   pokemonData: Pokemon;
   pokemonIsError: boolean;
   pokemonIsLoading: boolean;
-  pokemonRefetch: () => any;
   pokemonIsRefetching: boolean;
   pokemonIsRefetchError: boolean;
 };
@@ -50,7 +49,6 @@ export const usePokemon: UsePokemon = (name) => {
     pokemonData,
     pokemonIsError,
     pokemonIsLoading,
-    pokemonRefetch,
     pokemonIsRefetching,
     pokemonIsRefetchError,
   };
